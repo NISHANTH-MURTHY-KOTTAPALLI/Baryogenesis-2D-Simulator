@@ -12,8 +12,8 @@ Open [`https://nishanth-murthy-kottapalli.github.io/Baryogenesis-2D-Simulator/`]
 - **Mouse**: interact with tools (click / drag)
 - **Wheel**: tool radius
 - **Ctrl + {1..5}**: select tool
-- **[Shift + G]**: show/hide grid
-- **[Shift + O]**: show/hide overlays
+- **Shift + G**: show/hide grid
+- **Shift + O**: show/hide overlays
 - **H**: help
 - **Space**: play/pause simulation
 - **Enter**: initiate bounce

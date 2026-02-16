@@ -2,10 +2,9 @@
 
 A **toy, bitset-based baryogenesis simulator** in a 2D lattice world, with you as the **3D operator**. Go ahead and work your magic on the **Cosmic Sheet**.
 
-## Run it
-Open `index.html` in a browser.
+Open [`https://nishanth-murthy-kottapalli.github.io/Baryogenesis-2D-Simulator/`](https://nishanth-murthy-kottapalli.github.io/Baryogenesis-2D-Simulator/) in a browser.
 
-Locally:
+## Run it Locally:
 - VS Code: "Live Server" extension
 - Python: `python -m http.server` then open `http://localhost:8000/`
 

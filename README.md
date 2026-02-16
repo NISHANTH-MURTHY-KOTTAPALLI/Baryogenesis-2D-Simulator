@@ -22,7 +22,7 @@ Open [`https://nishanth-murthy-kottapalli.github.io/Baryogenesis-2D-Simulator/`]
 ## What you're seeing (toy physics)
 - **Matter bitset** (M) and **Antimatter bitset** (A) live on the same lattice.
 - **Pair creation** happens mostly when temperature is high (and during bounces).
-- **Annihilation** happens when M and A overlap → injects heat/energy.
+- **Annihilation** happens when M and A overlap > injects heat/energy.
 - A tiny **epsilon field ε(x,y)** biases outcomes slightly (paint it with the Bias Brush).
 - The universe cycles through **Expansion > Contraction > Bounce** (operator can force bounce).
 

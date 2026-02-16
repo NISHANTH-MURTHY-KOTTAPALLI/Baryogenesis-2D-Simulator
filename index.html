@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title> Baryogenesis 2D Simulator</title>
+  <link rel="stylesheet" href="styles/global.css" />
+  <link rel="stylesheet" href="styles/ui.css" />
+</head>
+<body>
+  <div class="viewport">
+    <div class="game-container" id="gameRoot">
+      <div class="sim-viewport" id="simViewport" aria-label="Simulation viewport">
+        <canvas class="game-canvas" id="gameCanvas" width="352" height="198"></canvas>
+        <canvas class="overlay-canvas" id="overlayCanvas" width="352" height="198"></canvas>
+      </div>
+
+      <div class="ui-layer" id="uiLayer">
+        <div class="topbar">
+          <div class="topbar-left">
+            <span class="pill" id="cyclePill">CYCLE: 0</span>
+            <span class="pill" id="phasePill">PHASE: —</span>
+            <span class="pill">TEMP:</span>
+            <div class="bar" title="Average Temperature"><div class="bar-fill" id="tempBar"></div></div>
+          </div>
+          <div class="topbar-right">
+            <span class="pill" id="seedPill">SEED: —</span>
+            <span class="pill" id="epsPill">ε: 0.000000</span>
+            <span class="pill" id="speedPill">SPD: 1×</span>
+          </div>
+        </div>
+
+        <div class="leftpanel">
+          <div class="panel-title">TOOLS</div>
+          <button class="tool-btn is-selected" data-tool="probe">[ Ctrl +1] Probe</button>
+          <button class="tool-btn" data-tool="bias">[Ctrl + 2] Bias Brush (ε)</button>
+          <button class="tool-btn" data-tool="quench">[Ctrl + 3] Quench Pulse</button>
+          <button class="tool-btn" data-tool="warp">[Ctrl + 4] Warp Boundary</button>
+          <button class="tool-btn" data-tool="bounce">[Ctrl + 5] Initiate Bounce</button>
+
+          <div class="panel-title mt">TOGGLE </div>
+          <label class="toggle"><input type="checkbox" id="toggleGrid" checked />[Shift + G]rid</label>
+          <label class="toggle"><input type="checkbox" id="toggleOverlays" checked />[Shift + O]verlays</label>
+          <label class="toggle"><input type="checkbox" id="togglePause" /> [Space] Play/Pause sim</label>
+
+          <div class="panel-title mt">SPEED</div>
+          <div class="speed-row">
+            <button class="small-btn" data-speed="0.25">0.25×</button>
+            <button class="small-btn is-selected" data-speed="1">1×</button>
+            <button class="small-btn" data-speed="4">4×</button>
+            <button class="small-btn" data-speed="16">16×</button>
+          </div>
+
+          <div class="panel-title mt">REPLAY</div>
+          <button class="small-btn wide" id="exportReplay">Export replay JSON</button>
+          <button class="small-btn wide" id="importReplay">Import replay JSON</button>
+          <button class="small-btn wide" id="resetRun">[R]eset run</button>
+
+          <div class="panel-title mt"></div>
+          <button class="small-btn wide" id="helpBtn">[H]elp</button>
+        </div>
+
+        <div class="bottompanel">
+          <div class="stats">
+            <div class="stat"><span class="label">MATTER</span><span class="value" id="matterCount">0</span></div>
+            <div class="stat"><span class="label">ANTIMATTER</span><span class="value" id="antiCount">0</span></div>
+            <div class="stat"><span class="label">NET BARYONS</span><span class="value good" id="netCount">0</span></div>
+            <div class="stat"><span class="label">ANNIHILATIONS/s</span><span class="value" id="annihRate">0</span></div>
+          </div>
+          <div class="charts">
+            <canvas id="sparkline" width="140" height="44" title="Net baryons over time"></canvas>
+            <canvas id="sparkline2" width="140" height="44" title="|M| and |A| (compressed)"></canvas>
+          </div>
+          <div class="actions">
+            <button class="action-btn" id="bounceBtn">INITIATE BOUNCE</button>
+          </div>
+        </div>
+
+        <div class="help-overlay" id="helpOverlay" hidden>
+          <div class="help-card">
+            <div class="help-title">Sim Baryogenesis — Controls</div>
+            <div class="help-body">
+              <div><b>Mouse</b>: interact (click / drag). <b>Wheel</b>: tool radius.</div>
+              <div><b>Ctrl + {1–5}</b>: tools. <b>Shift + G</b>: grid. <b>Shift + O</b>: overlays. <b>H</b>: help.</div>
+              <div><b>Space</b>: play/pause. <b>R</b>: reset. <b>Enter</b>: bounce.</div>
+              <div class="muted">Toy sim: pair creation, annihilation, quenches, tiny ε bias, cyclic phases, freeze‑out.</div>
+            </div>
+            <div class="help-actions">
+              <button class="action-btn" id="closeHelp">Close</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal" id="modal" hidden>
+          <div class="modal-card">
+            <div class="modal-title" id="modalTitle">Modal</div>
+            <textarea class="modal-text" id="modalText" spellcheck="false"></textarea>
+            <div class="modal-actions">
+              <button class="small-btn" id="modalCancel">Cancel</button>
+              <button class="action-btn" id="modalOk">OK</button>
+            </div>
+            <div class="muted tiny" id="modalHint"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-hint">
+    Tip: Paint ε pockets (Bias Brush), quench a region, then bounce; watch net baryons stabilize after freeze‑out.
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/bitset2d.js"></script>
+  <script src="js/baryoSim.js"></script>
+  <script src="js/renderers.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/init.js"></script>
+</body>
+</html>

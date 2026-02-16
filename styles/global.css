@@ -1,0 +1,74 @@
+:root{
+  --bg:#0b0f1a;
+  --frame:#1a2440;
+  --frame2:#0f1630;
+  --accent:#7fc2ff;
+  --text:#e8f0ff;
+  --muted:#a9b6d3;
+  --good:#63ff8a;
+  --bad:#ff6b6b;
+  --warn:#ffd166;
+}
+
+*{box-sizing:border-box;}
+html,body{height:100%;}
+body{
+  margin:0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  color:var(--text);
+  background:#0a0a0a;
+  overflow:hidden;
+}
+
+.viewport{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:clamp(12px, 2vw, 24px);
+}
+
+.game-container{
+  --scale: 1;
+  position:relative;
+  width:960px;
+  height:800px;
+  background:var(--bg);
+  outline:1px solid rgba(255,255,255,0.25);
+  border-radius:10px;
+  overflow:hidden;
+  transform: scale(var(--scale));
+  transform-origin:center center;
+}
+
+.sim-viewport{
+  position:absolute;
+  left:240px;
+  top:88px;
+  width:704px;
+  height:396px;
+}
+
+.game-canvas, .overlay-canvas{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  image-rendering: pixelated;
+}
+
+.overlay-canvas{ pointer-events:none; }
+
+.footer-hint{
+  position:fixed;
+  left:0; right:0;
+  bottom:10px;
+  text-align:center;
+  font-size:12px;
+  color:#fff;
+  opacity:0.85;
+  pointer-events:none;
+}
+
+[hidden]{ display:none !important; }
